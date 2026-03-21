@@ -36,19 +36,20 @@ for (state, month), row in state_month_avg.iterrows():
     vector = row.tolist()
     state_points.append((state, month, vector))
 
+print(state_points)
 
-# Getting averages of each county for each month of 2020
+# Getting averages of each county for each month of 2020 ok lets ignore the counties for now
 
-df_counties = df[df["county"].isna() == False]
-df_counties["month"] = df_counties["date"].str.split("/").str[0].astype(int)
-county_month_avg = df_counties.groupby(["state", "county", "month"])[mobility_cols].mean()
-county_month_avg = county_month_avg.groupby(level=["state", "month"]).transform(
-    lambda x: x.fillna(x.mean())
-)
+# df_counties = df[df["county"].isna() == False]
+# df_counties["month"] = df_counties["date"].str.split("/").str[0].astype(int)
+# county_month_avg = df_counties.groupby(["state", "county", "month"])[mobility_cols].mean()
+# county_month_avg = county_month_avg.groupby(level=["state", "month"]).transform(
+#     lambda x: x.fillna(x.mean())
+# )
 
-county_points = []
+# county_points = []
 
-for (state, county, month), row in county_month_avg.iterrows():
-    vector = row.tolist()
-    county_points.append((state, county, month, vector))
-print(county_points)
+# for (state, county, month), row in county_month_avg.iterrows():
+#     vector = row.tolist()
+#     county_points.append((state, county, month, vector))
+# print(county_points)
