@@ -3,21 +3,19 @@ import sys
 
 
 
-class KDTree(object):
+class KDNode:
     def __init__(self,point,k,left=None,right=None):
         self.point = point
         self.left = left
         self.right = right
-        self.k = self.dimensionCheck(k)
+        self.k = k
 
-    @staticmethod
-    def dimensionCheck(k):
-        if 6 >= k >= 1:
-            return k
 
-    @staticmethod
-    def findMedian(dataPoints,k):
-        return np.median(dataPoints,k)
+class KDTree:
+    def __init__(self, dataPoints=None):
+        self.root = None
+        if dataPoints:
+            self.root = self.buildTree(dataPoints,0)
 
     @staticmethod
     def getDistance(target,point):
@@ -28,7 +26,6 @@ class KDTree(object):
     
 # Operations: Insert, InsertMany, Delete, FindNearestK, FindNode, Construction?
 
-    @staticmethod
     def buildTree(dataPoints, depth):
         if not dataPoints:
             return None
@@ -47,7 +44,6 @@ class KDTree(object):
 
         return node
 
-    @staticmethod
     def kNearestNeighbors(target,dataPoints,k):
         distances = []
 
